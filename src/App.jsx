@@ -239,17 +239,23 @@ const NavLink = ({ href, children }) => (
   </a>
 );
 
-const PrimaryButton = ({ href, children, icon: Icon }) => (
-  <a
-    href={href}
-    className="inline-flex items-center gap-2 rounded-2xl bg-white text-gray-900 px-5 py-3 font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
-  >
-    {typeof Icon === "function" && <Icon className="w-5 h-5" />}
-    {children}
-  </a>
-);
+// === UPDATED: added external prop and safe attributes ===
+const PrimaryButton = ({ href, children, icon: Icon, external = false }) => {
+  const extra = external ? { target: "_blank", rel: "noopener noreferrer" } : {};
+  return (
+    <a
+      href={href}
+      {...extra}
+      className="inline-flex items-center gap-2 rounded-2xl bg-white text-gray-900 px-5 py-3 font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
+    >
+      {typeof Icon === "function" && <Icon className="w-5 h-5" />}
+      {children}
+    </a>
+  );
+};
 
-const GhostButton = ({ href, children, icon: Icon, variant = "dark" }) => {
+// === UPDATED: added external prop and safe attributes ===
+const GhostButton = ({ href, children, icon: Icon, variant = "dark", external = false }) => {
   const isLight = variant === "light";
   const base =
     "inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-semibold transition-all";
@@ -257,13 +263,12 @@ const GhostButton = ({ href, children, icon: Icon, variant = "dark" }) => {
     ? "ring-1 ring-gray-300 text-gray-900 hover:bg-gray-50"
     : "ring-1 ring-white/60 text-white backdrop-blur-sm hover:bg-white/10";
   return (
-    <a href={href} className={`${base} ${cls}`}>
+    <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className={`${base} ${cls}`}>
       {typeof Icon === "function" && <Icon className="w-5 h-5" />}
       {children}
     </a>
   );
 };
-
 
 const Chip = ({ children }) => (
   <span className="inline-flex items-center rounded-full bg-white/10 ring-1 ring-white/30 px-4 py-2 text-white/90 text-sm backdrop-blur-sm">
@@ -359,7 +364,8 @@ export default function EasyFlatBotSite() {
                 <NavLink href="#contacts">Контакты</NavLink>
               </nav>
               <div className="hidden md:flex items-center gap-3">
-                <PrimaryButton href="https://t.me/EasyFlatBot_bot" icon={SendIcon}>Запустить бота</PrimaryButton>
+                {/* external: Telegram */}
+                <PrimaryButton href="https://t.me/EasyFlatBot_bot" icon={SendIcon} external>Запустить бота</PrimaryButton>
               </div>
             </div>
           </div>
@@ -390,12 +396,13 @@ export default function EasyFlatBotSite() {
                   Подписка для арендаторов. Бесплатное размещение — для собственников. Всё просто и честно.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <PrimaryButton href="https://t.me/EasyFlatBot_bot" icon={Rocket}>Присоединиться</PrimaryButton>
-                  <GhostButton href="https://t.me/EasyFlatBot_chat" icon={MessageCircle}>Открыть чат</GhostButton>
-                  <GhostButton href="https://vk.com/easyflatbot_club" icon={LinkIcon}>VK сообщество</GhostButton>
+                  {/* external: Telegram + chat + VK */}
+                  <PrimaryButton href="https://t.me/EasyFlatBot_bot" icon={Rocket} external>Присоединиться</PrimaryButton>
+                  <GhostButton href="https://t.me/EasyFlatBot_chat" icon={MessageCircle} external>Открыть чат</GhostButton>
+                  <GhostButton href="https://vk.com/easyflatbot_club" icon={LinkIcon} external>VK сообщество</GhostButton>
                 </div>
                 <div className="mt-6 text-white/80 text-sm">
-                  Старт Telegram‑бота — <span className="font-semibold">1 сентября 2025</span>
+                  Старт Telegram-бота — <span className="font-semibold">1 сентября 2025</span>
                 </div>
               </motion.div>
             </div>
@@ -410,7 +417,7 @@ export default function EasyFlatBotSite() {
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
               <h2 className="text-3xl md:text-4xl font-black tracking-tight">Что такое EasyFlatBot?</h2>
               <p className="mt-4 text-gray-700 text-lg">
-                EasyFlatBot — Telegram‑бот для поиска и сдачи жилья на короткий срок в городах‑курортах Ставропольского края. Никаких комиссий, посредников и скрытых платежей.
+                EasyFlatBot — Telegram-бот для поиска и сдачи жилья на короткий срок в городах-курортах Ставропольского края. Никаких комиссий, посредников и скрытых платежей.
               </p>
               <p className="mt-3 text-gray-700">
                 Всё просто: подписка для арендаторов и бесплатное размещение для владельцев квартир.
@@ -556,8 +563,9 @@ export default function EasyFlatBotSite() {
               <h2 className="text-3xl md:text-4xl font-black tracking-tight">Собственникам — бесплатно</h2>
               <p className="mt-3 text-gray-700">Размести объявление бесплатно — быстро и просто. Без платных пакетов и ограничений.</p>
               <div className="mt-6 flex gap-3">
-                <PrimaryButton href="https://t.me/EasyFlatBot_bot" icon={Upload}>Добавить квартиру</PrimaryButton>
-                <GhostButton href="https://t.me/EasyFlatBot_chat" icon={MessageCircle}>Задать вопрос</GhostButton>
+                {/* external: Telegram + chat */}
+                <PrimaryButton href="https://t.me/EasyFlatBot_bot" icon={Upload} external>Добавить квартиру</PrimaryButton>
+                <GhostButton href="https://t.me/EasyFlatBot_chat" icon={MessageCircle} external>Задать вопрос</GhostButton>
               </div>
             </div>
             <div>
@@ -615,12 +623,12 @@ export default function EasyFlatBotSite() {
               <h2 className="text-3xl md:text-4xl font-black tracking-tight">Контакты</h2>
               <p className="mt-3 text-gray-700">Техническая поддержка — через наш чат в Telegram.</p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <PrimaryButton href="https://t.me/EasyFlatBot_bot" icon={SendIcon}>Telegram‑бот</PrimaryButton>
-                <GhostButton href="https://t.me/EasyFlatBot_chat" icon={MessageCircle} variant="light">Чат сообщества</GhostButton>
-                <GhostButton href="https://vk.com/easyflatbot_club" icon={LinkIcon} variant="light">VK сообщество</GhostButton>
+                {/* external: Telegram + chat + VK */}
+                <PrimaryButton href="https://t.me/EasyFlatBot_bot" icon={SendIcon} external>Telegram-бот</PrimaryButton>
+                <GhostButton href="https://t.me/EasyFlatBot_chat" icon={MessageCircle} variant="light" external>Чат сообщества</GhostButton>
+                <GhostButton href="https://vk.com/easyflatbot_club" icon={LinkIcon} variant="light" external>VK сообщество</GhostButton>
               </div>
             </div>
-
           </div>
         </div>
       </Section>
