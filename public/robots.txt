@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Канонический хост (полезно для Яндекса)
+Host: https://easyflatbot.ru
+
+Sitemap: https://easyflatbot.ru/sitemap.xml
