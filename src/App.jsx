@@ -17,6 +17,10 @@ import {
 } from "lucide-react";
 import * as Lucide from "lucide-react";
 
+// ======== Yandex.Metrika ========
+const YM_ID = 103756826;
+// ================================
+
 // Upload icon (custom SVG) — defined early to avoid reference issues
 const Upload = (props) => (
   <svg
@@ -93,44 +97,32 @@ function runSelfTests() {
   }
 }
 
-const cities = [
-  "Кисловодск",
-  "Ессентуки",
-  "Пятигорск",
-  "Железноводск",
-  "Ставрополь",
-];
+const cities = ["Кисловодск", "Ессентуки", "Пятигорск", "Железноводск", "Ставрополь"];
 
 const faqs = [
   {
     q: "Оплата подписки звёздами — как это работает?",
-    a:
-      "Оплата подписки — в Telegram Stars, официальной валюте Telegram. Купите звёзды в официальном Premium-боте Telegram (@PremiumBot) — это быстро и удобно. Затем вернитесь в нашего бота и оплатите подписку звёздами в пару касаний.",
+    a: "Оплата подписки — в Telegram Stars, официальной валюте Telegram. Купите звёзды в официальном Premium-боте Telegram (@PremiumBot) — это быстро и удобно. Затем вернитесь в нашего бота и оплатите подписку звёздами в пару касаний.",
   },
   {
     q: "Я сдаю квартиру. Нужно ли платить?",
-    a:
-      "Нет. Размещение объявлений для арендодателей — бесплатно. Просто заполни форму в боте и добавь квартиру — займёт не больше 2 минут.",
+    a: "Нет. Размещение объявлений для арендодателей — бесплатно. Просто заполни форму в боте и добавь квартиру — займёт не больше 2 минут.",
   },
   {
     q: "Сколько стоит подписка?",
-    a:
-      "Первые 3 месяца после запуска — 100 ⭐; далее: 3 месяца — 650 ⭐, 6 месяцев — 1000 ⭐, 12 месяцев — 1 500 ⭐.",
+    a: "Первые 3 месяца после запуска — 100 ⭐; далее: 3 месяца — 650 ⭐, 6 месяцев — 1000 ⭐, 12 месяцев — 1 500 ⭐.",
   },
   {
     q: "Это безопасно?",
-    a:
-      "Да. EasyFlatBot — прямой контакт с владельцем, без посредников. Мы исключаем фейки, спам и неадекватных участников. Соблюдай базовые правила безопасности при аренде.",
+    a: "Да. EasyFlatBot — прямой контакт с владельцем, без посредников. Мы исключаем фейки, спам и неадекватных участников. Соблюдай базовые правила безопасности при аренде.",
   },
   {
     q: "Как проходит модерация обьявлений?",
-    a:
-      "Каждое объявление проверяется вручную на соответствие правилам, наличие фейков, корректность информации и фото.",
+    a: "Каждое объявление проверяется вручную на соответствие правилам, наличие фейков, корректность информации и фото.",
   },
   {
     q: "Могу ли я сдать несколько квартир?",
-    a:
-      "Да, можно добавить несколько объектов — для каждого создаётся отдельное объявление.",
+    a: "Да, можно добавить несколько объектов — для каждого создаётся отдельное объявление.",
   },
 ];
 
@@ -138,9 +130,7 @@ const roadmap = [
   {
     date: "01.09.2025",
     title: "Запуск Telegram-бота",
-    points: [
-      "Без комиссий, без переплат — честная аренда напрямую",
-    ],
+    points: ["Без комиссий, без переплат — честная аренда напрямую"],
   },
   {
     date: "Январь 2026",
@@ -150,10 +140,7 @@ const roadmap = [
   {
     date: "Май 2026",
     title: "Бета мобильного приложения",
-    points: [
-      "Поддержка бронирования через бота",
-      "Георасширение: новые города",
-    ],
+    points: ["Поддержка бронирования через бота", "Георасширение: новые города"],
   },
   {
     date: "2027",
@@ -166,8 +153,7 @@ const benefits = [
   {
     icon: Percent,
     title: "Без комиссий и агентств",
-    text:
-      "Стоимость аренды ниже, чем в классических сервисах: платишь только владельцу.",
+    text: "Стоимость аренды ниже, чем в классических сервисах: платишь только владельцу.",
   },
   {
     icon: Users,
@@ -222,8 +208,7 @@ const Logo = ({ invert = false }) => (
   <div className="flex items-center gap-2">
     <LogoMark className={`w-7 h-7 ${invert ? "text-white" : "text-black"}`} />
     <span
-      className={`font-black tracking-tight text-lg sm:text-xl ${invert ? "text-white" : "text-black"
-        }`}
+      className={`font-black tracking-tight text-lg sm:text-xl ${invert ? "text-white" : "text-black"}`}
     >
       EasyFlatBot
     </span>
@@ -231,21 +216,21 @@ const Logo = ({ invert = false }) => (
 );
 
 const NavLink = ({ href, children }) => (
-  <a
-    href={href}
-    className="text-white/90 hover:text-white transition-colors"
-  >
+  <a href={href} className="text-white/90 hover:text-white transition-colors">
     {children}
   </a>
 );
 
-// === UPDATED: added external prop and safe attributes ===
-const PrimaryButton = ({ href, children, icon: Icon, external = false }) => {
+// === UPDATED: goals support + external ===
+const PrimaryButton = ({ href, children, icon: Icon, external = false, goal }) => {
   const extra = external ? { target: "_blank", rel: "noopener noreferrer" } : {};
+  const onClick = () => goal && window.ym?.(YM_ID, "reachGoal", goal);
   return (
     <a
       href={href}
       {...extra}
+      data-ym-goal={goal}
+      onClick={onClick}
       className="inline-flex items-center gap-2 rounded-2xl bg-white text-gray-900 px-5 py-3 font-semibold shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5"
     >
       {typeof Icon === "function" && <Icon className="w-5 h-5" />}
@@ -254,16 +239,17 @@ const PrimaryButton = ({ href, children, icon: Icon, external = false }) => {
   );
 };
 
-// === UPDATED: added external prop and safe attributes ===
-const GhostButton = ({ href, children, icon: Icon, variant = "dark", external = false }) => {
+// === UPDATED: goals support + external ===
+const GhostButton = ({ href, children, icon: Icon, variant = "dark", external = false, goal }) => {
   const isLight = variant === "light";
-  const base =
-    "inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-semibold transition-all";
+  const base = "inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-semibold transition-all";
   const cls = isLight
     ? "ring-1 ring-gray-300 text-gray-900 hover:bg-gray-50"
     : "ring-1 ring-white/60 text-white backdrop-blur-sm hover:bg-white/10";
+  const extra = external ? { target: "_blank", rel: "noopener noreferrer" } : {};
+  const onClick = () => goal && window.ym?.(YM_ID, "reachGoal", goal);
   return (
-    <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} className={`${base} ${cls}`}>
+    <a href={href} {...extra} data-ym-goal={goal} onClick={onClick} className={`${base} ${cls}`}>
       {typeof Icon === "function" && <Icon className="w-5 h-5" />}
       {children}
     </a>
@@ -276,11 +262,7 @@ const Chip = ({ children }) => (
   </span>
 );
 
-const Card = ({ children }) => (
-  <div className="rounded-3xl bg-white shadow-lg p-6 md:p-8">
-    {children}
-  </div>
-);
+const Card = ({ children }) => <div className="rounded-3xl bg-white shadow-lg p-6 md:p-8">{children}</div>;
 
 const GradientBG = ({ children }) => (
   <div className="relative overflow-hidden">
@@ -322,16 +304,11 @@ const FAQ = ({ item, defaultOpen = false }) => {
   const [open, setOpen] = useState(defaultOpen);
   return (
     <div className="rounded-2xl ring-1 ring-gray-200 bg-white">
-      <button
-        className="w-full flex items-center justify-between p-5 text-left"
-        onClick={() => setOpen((v) => !v)}
-      >
+      <button className="w-full flex items-center justify-between p-5 text-left" onClick={() => setOpen((v) => !v)}>
         <span className="font-semibold pr-6">{item.q}</span>
         <ArrowRight className={`w-5 h-5 transition-transform ${open ? "rotate-90" : ""}`} />
       </button>
-      {open && (
-        <div className="p-5 pt-0 text-gray-700">{item.a}</div>
-      )}
+      {open && <div className="p-5 pt-0 text-gray-700">{item.a}</div>}
     </div>
   );
 };
@@ -364,8 +341,14 @@ export default function EasyFlatBotSite() {
                 <NavLink href="#contacts">Контакты</NavLink>
               </nav>
               <div className="hidden md:flex items-center gap-3">
-                {/* external: Telegram */}
-                <PrimaryButton href="https://t.me/EasyFlatBot_bot" icon={SendIcon} external>Запустить бота</PrimaryButton>
+                <PrimaryButton
+                  href="https://t.me/EasyFlatBot_bot"
+                  icon={SendIcon}
+                  external
+                  goal="open_bot_header"
+                >
+                  Запустить бота
+                </PrimaryButton>
               </div>
             </div>
           </div>
@@ -396,10 +379,30 @@ export default function EasyFlatBotSite() {
                   Подписка для арендаторов. Бесплатное размещение — для собственников. Всё просто и честно.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center gap-4">
-                  {/* external: Telegram + chat + VK */}
-                  <PrimaryButton href="https://t.me/EasyFlatBot_bot" icon={Rocket} external>Присоединиться</PrimaryButton>
-                  <GhostButton href="https://t.me/EasyFlatBot_chat" icon={MessageCircle} external>Открыть чат</GhostButton>
-                  <GhostButton href="https://vk.com/easyflatbot_club" icon={LinkIcon} external>VK сообщество</GhostButton>
+                  <PrimaryButton
+                    href="https://t.me/EasyFlatBot_bot"
+                    icon={Rocket}
+                    external
+                    goal="open_bot_hero"
+                  >
+                    Присоединиться
+                  </PrimaryButton>
+                  <GhostButton
+                    href="https://t.me/EasyFlatBot_chat"
+                    icon={MessageCircle}
+                    external
+                    goal="open_chat_hero"
+                  >
+                    Открыть чат
+                  </GhostButton>
+                  <GhostButton
+                    href="https://vk.com/easyflatbot_club"
+                    icon={LinkIcon}
+                    external
+                    goal="open_vk_hero"
+                  >
+                    VK сообщество
+                  </GhostButton>
                 </div>
                 <div className="mt-6 text-white/80 text-sm">
                   Старт Telegram-бота — <span className="font-semibold">1 сентября 2025</span>
@@ -414,24 +417,39 @@ export default function EasyFlatBotSite() {
       <Section id="what" className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
               <h2 className="text-3xl md:text-4xl font-black tracking-tight">Что такое EasyFlatBot?</h2>
               <p className="mt-4 text-gray-700 text-lg">
-                EasyFlatBot — Telegram-бот для поиска и сдачи жилья на короткий срок в городах-курортах Ставропольского края. Никаких комиссий, посредников и скрытых платежей.
+                EasyFlatBot — Telegram-бот для поиска и сдачи жилья на короткий срок в городах-курортах
+                Ставропольского края. Никаких комиссий, посредников и скрытых платежей.
               </p>
               <p className="mt-3 text-gray-700">
                 Всё просто: подписка для арендаторов и бесплатное размещение для владельцев квартир.
               </p>
               <div className="mt-6 flex gap-3">
-                <PrimaryButton href="#how" icon={ArrowRight}>Как это работает</PrimaryButton>
+                <PrimaryButton href="#how" icon={ArrowRight}>
+                  Как это работает
+                </PrimaryButton>
               </div>
             </motion.div>
-            <motion.div initial={{ opacity: 0, scale: 0.96 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
               <div className="rounded-3xl bg-white p-6 shadow-xl">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="rounded-2xl bg-gradient-to-br from-fuchsia-100 to-rose-100 p-6">
                     <div className="font-semibold">Арендаторам</div>
-                    <div className="text-sm text-gray-700 mt-2">Подписка за копейки — прямой контакт с хозяином.</div>
+                    <div className="text-sm text-gray-700 mt-2">
+                      Подписка за копейки — прямой контакт с хозяином.
+                    </div>
                   </div>
                   <div className="rounded-2xl bg-gradient-to-br from-teal-100 to-sky-100 p-6">
                     <div className="font-semibold">Собственникам</div>
@@ -455,7 +473,9 @@ export default function EasyFlatBotSite() {
       {/* How it works */}
       <Section id="how" className="py-16 md:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-black tracking-tight">Как найти квартиру в EasyFlatBot?</h2>
+          <h2 className="text-3xl md:text-4xl font-black tracking-tight">
+            Как найти квартиру в EasyFlatBot?
+          </h2>
           <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Step icon={BadgeCheck} title="Оформи подписку" text="Очень просто — за 1 минуту прямо в боте." />
             <Step icon={Home} title="Выбери квартиру" text="Смотри и фильтруй объявления по городам." />
@@ -471,7 +491,13 @@ export default function EasyFlatBotSite() {
           <h2 className="text-3xl md:text-4xl font-black tracking-tight">Почему EasyFlatBot</h2>
           <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((b, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.05 }}>
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.05 }}
+              >
                 <Benefit icon={b.icon} title={b.title} text={b.text} />
               </motion.div>
             ))}
@@ -486,15 +512,26 @@ export default function EasyFlatBotSite() {
             <h2 className="text-3xl md:text-4xl font-black tracking-tight">Города</h2>
             <div className="flex flex-wrap gap-2">
               {cities.map((c) => (
-                <span key={c} className="rounded-full bg-gray-900 text-white px-4 py-2 text-sm">{c}</span>
+                <span key={c} className="rounded-full bg-gray-900 text-white px-4 py-2 text-sm">
+                  {c}
+                </span>
               ))}
             </div>
           </div>
           <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {cities.map((c, i) => (
-              <motion.div key={c} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.04 }} className="rounded-3xl bg-gradient-to-br from-gray-100 to-white p-6 ring-1 ring-gray-200 shadow-sm">
+              <motion.div
+                key={c}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.04 }}
+                className="rounded-3xl bg-gradient-to-br from-gray-100 to-white p-6 ring-1 ring-gray-200 shadow-sm"
+              >
                 <div className="flex items-center gap-3">
-                  <div className="rounded-xl bg-gray-900 text-white p-2"><MapPin className="w-5 h-5" /></div>
+                  <div className="rounded-xl bg-gray-900 text-white p-2">
+                    <MapPin className="w-5 h-5" />
+                  </div>
                   <div className="font-semibold">{c}</div>
                 </div>
                 <p className="text-gray-700 mt-3 text-sm">Подборка актуальных квартир — прямо в боте.</p>
@@ -512,7 +549,14 @@ export default function EasyFlatBotSite() {
               <h2 className="text-3xl md:text-4xl font-black tracking-tight">Тарифы подписки</h2>
               <p className="mt-2 text-gray-700">Первые 3 месяца после запуска — 100 ⭐ за весь период.</p>
             </div>
-            <a href="https://t.me/EasyFlatBot_bot" className="text-sm font-semibold underline decoration-2 underline-offset-4">Оформить в боте →</a>
+            <a
+              href="https://t.me/EasyFlatBot_bot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-semibold underline decoration-2 underline-offset-4"
+            >
+              Оформить в боте →
+            </a>
           </div>
           <div className="mt-8 grid md:grid-cols-3 gap-6">
             <Card>
@@ -525,8 +569,17 @@ export default function EasyFlatBotSite() {
                 <li>Все города</li>
                 <li>Поддержка</li>
               </ul>
-              <a href="https://t.me/EasyFlatBot_bot" className="mt-6 inline-flex items-center gap-2 font-semibold text-gray-900">Купить в боте <ArrowRight className="w-4 h-4" /></a>
+              <a
+                href="https://t.me/EasyFlatBot_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => window.ym?.(YM_ID, "reachGoal", "buy_3m")}
+                className="mt-6 inline-flex items-center gap-2 font-semibold text-gray-900"
+              >
+                Купить в боте <ArrowRight className="w-4 h-4" />
+              </a>
             </Card>
+
             <Card>
               <div className="flex items-center justify-between">
                 <h3 className="font-bold text-xl">6 месяцев</h3>
@@ -537,8 +590,17 @@ export default function EasyFlatBotSite() {
                 <li>Все города</li>
                 <li>Поддержка</li>
               </ul>
-              <a href="https://t.me/EasyFlatBot_bot" className="mt-6 inline-flex items-center gap-2 font-semibold text-gray-900">Купить в боте <ArrowRight className="w-4 h-4" /></a>
+              <a
+                href="https://t.me/EasyFlatBot_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => window.ym?.(YM_ID, "reachGoal", "buy_6m")}
+                className="mt-6 inline-flex items-center gap-2 font-semibold text-gray-900"
+              >
+                Купить в боте <ArrowRight className="w-4 h-4" />
+              </a>
             </Card>
+
             <Card>
               <div className="flex items-center justify-between">
                 <h3 className="font-bold text-xl">12 месяцев</h3>
@@ -549,7 +611,15 @@ export default function EasyFlatBotSite() {
                 <li>Все города</li>
                 <li>Поддержка</li>
               </ul>
-              <a href="https://t.me/EasyFlatBot_bot" className="mt-6 inline-flex items-center gap-2 font-semibold text-gray-900">Купить в боте <ArrowRight className="w-4 h-4" /></a>
+              <a
+                href="https://t.me/EasyFlatBot_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => window.ym?.(YM_ID, "reachGoal", "buy_12m")}
+                className="mt-6 inline-flex items-center gap-2 font-semibold text-gray-900"
+              >
+                Купить в боте <ArrowRight className="w-4 h-4" />
+              </a>
             </Card>
           </div>
         </div>
@@ -561,18 +631,35 @@ export default function EasyFlatBotSite() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-black tracking-tight">Собственникам — бесплатно</h2>
-              <p className="mt-3 text-gray-700">Размести объявление бесплатно — быстро и просто. Без платных пакетов и ограничений.</p>
+              <p className="mt-3 text-gray-700">
+                Размести объявление бесплатно — быстро и просто. Без платных пакетов и ограничений.
+              </p>
               <div className="mt-6 flex gap-3">
-                {/* external: Telegram + chat */}
-                <PrimaryButton href="https://t.me/EasyFlatBot_bot" icon={Upload} external>Добавить квартиру</PrimaryButton>
-                <GhostButton href="https://t.me/EasyFlatBot_chat" icon={MessageCircle} external>Задать вопрос</GhostButton>
+                <PrimaryButton
+                  href="https://t.me/EasyFlatBot_bot"
+                  icon={Upload}
+                  external
+                  goal="owner_add_listing"
+                >
+                  Добавить квартиру
+                </PrimaryButton>
+                <GhostButton
+                  href="https://t.me/EasyFlatBot_chat"
+                  icon={MessageCircle}
+                  external
+                  goal="owner_question"
+                >
+                  Задать вопрос
+                </GhostButton>
               </div>
             </div>
             <div>
               <div className="rounded-3xl bg-white p-6 ring-1 ring-gray-200 shadow-sm">
                 <div className="grid grid-cols-2 gap-4">
                   {["Бесплатно", "Ручная модерация", "Фото и описание", "Прямой контакт"].map((t) => (
-                    <div key={t} className="rounded-2xl bg-gray-50 p-4 ring-1 ring-gray-200 text-sm font-medium">{t}</div>
+                    <div key={t} className="rounded-2xl bg-gray-50 p-4 ring-1 ring-gray-200 text-sm font-medium">
+                      {t}
+                    </div>
                   ))}
                 </div>
               </div>
@@ -587,9 +674,18 @@ export default function EasyFlatBotSite() {
           <h2 className="text-3xl md:text-4xl font-black tracking-tight">Будущее</h2>
           <div className="mt-8 space-y-6">
             {roadmap.map((r, i) => (
-              <motion.div key={i} initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: i * 0.04 }} className="rounded-3xl bg-white p-6 ring-1 ring-gray-200 shadow-sm">
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.04 }}
+                className="rounded-3xl bg-white p-6 ring-1 ring-gray-200 shadow-sm"
+              >
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center rounded-full bg-gray-900 text-white px-3 py-1 text-xs font-semibold">{r.date}</span>
+                  <span className="inline-flex items-center rounded-full bg-gray-900 text-white px-3 py-1 text-xs font-semibold">
+                    {r.date}
+                  </span>
                   <div className="font-semibold">{r.title}</div>
                 </div>
                 <ul className="mt-3 list-disc pl-6 text-gray-700">
@@ -623,10 +719,32 @@ export default function EasyFlatBotSite() {
               <h2 className="text-3xl md:text-4xl font-black tracking-tight">Контакты</h2>
               <p className="mt-3 text-gray-700">Техническая поддержка — через наш чат в Telegram.</p>
               <div className="mt-6 flex flex-wrap gap-3">
-                {/* external: Telegram + chat + VK */}
-                <PrimaryButton href="https://t.me/EasyFlatBot_bot" icon={SendIcon} external>Telegram-бот</PrimaryButton>
-                <GhostButton href="https://t.me/EasyFlatBot_chat" icon={MessageCircle} variant="light" external>Чат сообщества</GhostButton>
-                <GhostButton href="https://vk.com/easyflatbot_club" icon={LinkIcon} variant="light" external>VK сообщество</GhostButton>
+                <PrimaryButton
+                  href="https://t.me/EasyFlatBot_bot"
+                  icon={SendIcon}
+                  external
+                  goal="open_bot_contacts"
+                >
+                  Telegram-бот
+                </PrimaryButton>
+                <GhostButton
+                  href="https://t.me/EasyFlatBot_chat"
+                  icon={MessageCircle}
+                  variant="light"
+                  external
+                  goal="open_chat_contacts"
+                >
+                  Чат сообщества
+                </GhostButton>
+                <GhostButton
+                  href="https://vk.com/easyflatbot_club"
+                  icon={LinkIcon}
+                  variant="light"
+                  external
+                  goal="open_vk_contacts"
+                >
+                  VK сообщество
+                </GhostButton>
               </div>
             </div>
           </div>
@@ -638,12 +756,22 @@ export default function EasyFlatBotSite() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <Logo />
-            <div className="text-sm text-gray-600">© {new Date().getFullYear()} EasyFlatBot. Все права защищены.</div>
+            <div className="text-sm text-gray-600">
+              © {new Date().getFullYear()} EasyFlatBot. Все права защищены.
+            </div>
             <div className="flex items-center gap-3 text-sm">
-              <a href="#what" className="underline underline-offset-4">О нас</a>
-              <a href="#roadmap" className="underline underline-offset-4">Будущее</a>
-              <a href="#faq" className="underline underline-offset-4">FAQ</a>
-              <a href="#contacts" className="underline underline-offset-4">Контакты</a>
+              <a href="#what" className="underline underline-offset-4">
+                О нас
+              </a>
+              <a href="#roadmap" className="underline underline-offset-4">
+                Будущее
+              </a>
+              <a href="#faq" className="underline underline-offset-4">
+                FAQ
+              </a>
+              <a href="#contacts" className="underline underline-offset-4">
+                Контакты
+              </a>
             </div>
           </div>
         </div>
