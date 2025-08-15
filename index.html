@@ -38,6 +38,86 @@
     <meta name="twitter:image" content="/og-image.png?v=1" />
     <meta name="twitter:image:alt" content="EasyFlatBot — аренда без посредников" />
 
+    <!-- Structured data: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "EasyFlatBot",
+      "url": "https://easyflatbot.ru/",
+      "logo": "https://easyflatbot.ru/favicon.svg",
+      "sameAs": [
+        "https://t.me/EasyFlatBot_bot",
+        "https://t.me/EasyFlatBot_chat",
+        "https://vk.com/easyflatbot_club"
+      ],
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": "https://t.me/EasyFlatBot_chat",
+        "availableLanguage": ["ru"]
+      }]
+    }
+    </script>
+
+    <!-- Structured data: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Оплата подписки звёздами — как это работает?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Подписка оплачивается в Telegram Stars. Купите звёзды в официальном Premium-боте Telegram (@PremiumBot) и затем оплатите подписку в боте EasyFlatBot — быстро и удобно."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Я сдаю квартиру. Нужно ли платить?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Нет. Размещение объявлений для собственников бесплатно: заполните форму в боте и добавьте квартиру — это займёт пару минут."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит подписка?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Первые 3 месяца после запуска — 100 ⭐ за весь период. Далее: 3 месяца — 650 ⭐, 6 месяцев — 1000 ⭐, 12 месяцев — 1500 ⭐."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Это безопасно?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Контакты — только напрямую с собственниками, без посредников. Объявления проходят ручную модерацию, мы отсеиваем фейки и спам. Соблюдайте базовые правила безопасности при аренде."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как проходит модерация объявлений?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Каждое объявление проверяется вручную на соответствие правилам, достоверность информации и фото."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Могу ли я сдать несколько квартир?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да, вы можете добавить несколько объектов — для каждого создаётся отдельное объявление."
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- UX: помечаем, что JS включён, чтобы скрыть SEO-фолбэк -->
     <script>document.documentElement.classList.add('js');</script>
     <style>
