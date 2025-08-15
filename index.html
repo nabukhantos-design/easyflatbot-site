@@ -13,10 +13,11 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://easyflatbot.ru/" />
 
-    <!-- Favicons / Theme -->
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="shortcut icon" href="/favicon.ico" sizes="any" />
-    <link rel="apple-touch-icon" href="/icon-512.png" />
+    <!-- Favicons / PWA -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#111827" />
 
     <!-- Open Graph -->
@@ -36,6 +37,22 @@
     <meta name="twitter:description" content="Поиск и сдача жилья. Оплата подписки — звёздами в Telegram." />
     <meta name="twitter:image" content="/og-image.png?v=1" />
     <meta name="twitter:image:alt" content="EasyFlatBot — аренда без посредников" />
+
+    <!-- UX: помечаем, что JS включён, чтобы скрыть SEO-фолбэк -->
+    <script>document.documentElement.classList.add('js');</script>
+    <style>
+      /* Скрываем SEO-фолбэк для пользователей с активным JS,
+         но оставляем текст доступным сканерам и без-JS средам. */
+      .seo-only {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      html.js .seo-only { display: none; }
+    </style>
 
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -58,12 +75,28 @@
     <!-- /Yandex.Metrika counter -->
   </head>
   <body>
-    <!-- noscript-версия счётчика (должна быть в body, не в head) -->
+    <!-- noscript-версия Метрики -->
     <noscript>
       <div>
         <img src="https://mc.yandex.ru/watch/103756826" style="position:absolute; left:-9999px;" alt="" />
       </div>
     </noscript>
+
+    <!-- SEO-фолбэк: закрывает ошибки «нет H1», «0 слов», «нет внутренних ссылок» -->
+    <div class="seo-only" aria-hidden="true">
+      <h1>EasyFlatBot — аренда без посредников в Кисловодске и городах-курортах Ставрополья</h1>
+      <p>Поиск и сдача жилья без комиссий. Подписка для арендаторов, бесплатное размещение для собственников. Всё работает в Telegram.</p>
+      <p>
+        Полезные разделы:
+        <a href="#what">Что это</a> ·
+        <a href="#how">Как это работает</a> ·
+        <a href="#benefits">Почему мы</a> ·
+        <a href="#cities">Города</a> ·
+        <a href="#pricing">Тарифы</a> ·
+        <a href="#faq">FAQ</a> ·
+        <a href="#contacts">Контакты</a>
+      </p>
+    </div>
 
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
