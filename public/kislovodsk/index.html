@@ -4,22 +4,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Кисловодск — аренда без посредников, районы, история, цены | EasyFlatBot</title>
+  <title>Кисловодск — районы, история, аренда без посредников | EasyFlatBot</title>
   <meta name="description" content="Гид по Кисловодску: краткая история, популярные районы, ориентиры цен и сезонность аренды жилья. Без посредников — прямые контакты в Telegram EasyFlatBot." />
 
-  <!-- Canonical (если будет собственный домен — обнови) -->
-  <!-- <link rel="canonical" href="https://easyflatbot.ru/kislovodsk/"> -->
+  <!-- Canonical для GitHub Pages этого репо -->
+  <link rel="canonical" href="https://nabukhantos-design.github.io/kislovodsk-guide2/" />
 
-  <!-- Favicons -->
-  <link rel="icon" href="./images/easyflatbot-logo-black.svg" type="image/svg+xml" />
   <meta name="theme-color" content="#111827" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
 
-  <!-- Open Graph -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="EasyFlatBot" />
   <meta property="og:title" content="Кисловодск — районы, история, аренда без посредников" />
   <meta property="og:description" content="Районы Кисловодска, ориентиры цен, сезонность и быстрый доступ к объявлениям без посредников через Telegram EasyFlatBot." />
-  <meta property="og:image" content="./images/kislovodsk-1.jpg" />
+  <meta property="og:url" content="https://nabukhantos-design.github.io/kislovodsk-guide2/" />
+  <!-- без картинки умышленно, чтобы не было «битых» загрузок -->
 
   <style>
     :root{
@@ -29,48 +29,94 @@
       --ink:#111827; /* gray-900 */
       --muted:#6b7280; /* gray-500 */
       --ring:#e5e7eb; /* gray-200 */
+      --card:#ffffff;
     }
     *{box-sizing:border-box}
-    body{margin:0;color:var(--ink);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,"Noto Sans",Arial}
+    html,body{margin:0;padding:0}
+    body{color:var(--ink);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,"Noto Sans",Arial;background:#fff}
     a{color:var(--ink)}
     .container{max-width:1120px;margin:0 auto;padding:0 20px}
     .hero{color:#fff;background:linear-gradient(135deg,var(--bg1),var(--bg2) 45%,var(--bg3))}
     .hero-inner{padding:28px 0 48px}
     .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-    .logo img{height:28px;width:auto;display:block}
+    .logo{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:900}
+    .logo svg{width:28px;height:28px}
     .nav-links{display:none;gap:16px}
     .nav-links a{color:#fff;text-decoration:none;opacity:.9}
     @media(min-width:900px){.nav-links{display:flex}}
 
     h1{font-size:40px;line-height:1.15;margin:12px 0 10px;font-weight:900}
     h2{font-size:26px;line-height:1.25;margin:28px 0 12px;font-weight:800}
+    h3{font-size:18px;margin:0 0 8px;font-weight:700}
     p{margin:0 0 12px}
-    .kicker{display:inline-flex;gap:8px;align-items:center;margin:8px 0 14px}
+    ul{margin:0 0 12px 18px}
+    .kicker{display:inline-flex;gap:8px;align-items:center;margin:8px 0 14px;flex-wrap:wrap}
     .chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);color:#fff;padding:8px 12px;border-radius:999px;font-weight:600}
     .cta{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--ink);padding:12px 18px;border-radius:14px;text-decoration:none;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,.15)}
     .cta.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.6);backdrop-filter:saturate(160%) blur(6px)}
+    .muted{color:#f3f4f6}
     .grid{display:grid;gap:18px}
     @media(min-width:900px){.grid.cols-3{grid-template-columns:repeat(3,1fr)} .grid.cols-2{grid-template-columns:repeat(2,1fr)}}
-    .card{background:#fff;border:1px solid var(--ring);border-radius:20px;padding:18px;box-shadow:0 6px 18px rgba(17,24,39,.04)}
-    .muted{color:var(--muted)}
-    .breadcrumbs{font-size:13px;color:#e5e7eb}
-    .breadcrumbs a{color:#f3f4f6}
-    .img{border-radius:18px;border:1px solid var(--ring);width:100%;height:auto}
+    .card{background:var(--card);border:1px solid var(--ring);border-radius:20px;padding:18px;box-shadow:0 6px 18px rgba(17,24,39,.04)}
+    .note{color:var(--muted);font-size:14px}
     .cities a{display:inline-block;margin:6px 10px 0 0;text-decoration:underline}
     footer{padding:30px 0;color:var(--muted)}
-    ul{margin:0 0 12px 18px}
+    details{border:1px solid var(--ring);border-radius:12px;padding:12px;background:#fff}
+    details+details{margin-top:10px}
+    summary{cursor:pointer;font-weight:700}
   </style>
+
+  <!-- JSON-LD: WebPage + Place -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Кисловодск — районы, история, аренда без посредников",
+    "url":"https://nabukhantos-design.github.io/kislovodsk-guide2/",
+    "about":{
+      "@type":"Place",
+      "name":"Кисловодск",
+      "address":{"@type":"PostalAddress","addressLocality":"Кисловодск","addressRegion":"Ставропольский край","addressCountry":"RU"}
+    },
+    "publisher":{"@type":"Organization","name":"EasyFlatBot","url":"https://easyflatbot.ru/"}
+  }
+  </script>
+  <!-- JSON-LD: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Как быстро найти квартиру в Кисловодске без посредников?","acceptedAnswer":{"@type":"Answer","text":"Откройте Telegram-бота EasyFlatBot, оформите подписку в Telegram Stars и получите доступ ко всем актуальным объявлениям с контактами владельцев."}},
+      {"@type":"Question","name":"Когда дешевле снимать жильё в Кисловодске?","acceptedAnswer":{"@type":"Answer","text":"Вне высокого сезона: поздняя осень, зима и ранняя весна. Летом и в праздники спрос выше, цены подрастают — бронируйте заранее."}},
+      {"@type":"Question","name":"Какие районы наиболее востребованы?","acceptedAnswer":{"@type":"Answer","text":"Центр и кварталы возле Курортного парка — самые популярные; Слободка и Верхний рынок дают хороший баланс цены и логистики, спальные массивы — самый бюджетный вариант."}}
+    ]
+  }
+  </script>
+
+  <!-- Яндекс.Метрика (при необходимости) -->
+  <script>
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=103756826','ym');
+    ym(103756826,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
+  </script>
 </head>
 <body>
+<noscript><img src="https://mc.yandex.ru/watch/103756826" style="position:absolute;left:-9999px" alt=""></noscript>
 
-<!-- HERO -->
+<!-- HERO / ШАПКА в стиле главной -->
 <section class="hero">
   <div class="container hero-inner">
     <nav class="nav">
-      <a class="logo" href="https://easyflatbot.ru/" target="_blank" rel="noopener">
-        <!-- Белый логотип для тёмного/градиентного фона -->
-        <img src="./images/easyflatbot-logo-white.svg" alt="EasyFlatBot" />
+      <a class="logo" href="https://easyflatbot.ru/" target="_blank" rel="noopener" aria-label="EasyFlatBot">
+        <!-- встроенный логотип (SVG), белый для градиента -->
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="32" cy="32" r="26" stroke="#ffffff"/>
+          <path d="M20 36l8-16 8 8 8-4" stroke="#ffffff"/>
+        </svg>
+        <span>EasyFlatBot</span>
       </a>
       <div class="nav-links">
         <a href="https://easyflatbot.ru/#what" target="_blank" rel="noopener">Что это</a>
@@ -82,15 +128,14 @@
       </div>
     </nav>
 
-    <div class="breadcrumbs"><a href="https://easyflatbot.ru/" target="_blank" rel="noopener">Главная</a> / Кисловодск</div>
-
     <div class="kicker">
       <span class="chip">Без посредников</span>
       <span class="chip">Прямой контакт с владельцем</span>
+      <span class="chip">Telegram Stars</span>
     </div>
 
     <h1>Кисловодск — снять квартиру без комиссий и переплат</h1>
-    <p class="muted" style="color:#f3f4f6">История курорта, популярные районы и ориентиры цен. Все актуальные объявления доступны в нашем Telegram-боте — быстро и прозрачно.</p>
+    <p class="muted">История курорта, популярные районы, ориентиры цен и сезонность. Все объявления доступны в нашем Telegram-боте.</p>
 
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px">
       <a class="cta" href="https://t.me/EasyFlatBot_bot" target="_blank" rel="noopener">Открыть объявления в Telegram</a>
@@ -102,35 +147,28 @@
 <!-- CONTENT -->
 <main class="container" style="padding:32px 0 10px">
 
-  <!-- Галерея -->
-  <section class="grid cols-2" aria-label="Фотографии Кисловодска">
-    <img class="img" src="./images/kislovodsk-1.jpg" alt="Кисловодск — Курортный парк" loading="lazy" />
-    <img class="img" src="./images/kislovodsk-2.jpg" alt="Кисловодск — центр города" loading="lazy" />
-  </section>
-
-  <!-- История -->
-  <section style="margin-top:26px">
-    <div class="card">
-      <h2>Краткая история Кисловодска</h2>
-      <p>Кисловодск — один из главных курортов Кавказских Минеральных Вод. Город вырос вокруг Нарзанных источников, известных ещё с XVIII века, а активное развитие как курорта началось в XIX столетии. Сюда приезжали на лечение и отдых писатели, художники, деятели науки и культуры; здесь формировалась уникальная курортная архитектура и традиция прогулок по обширному Курортному парку.</p>
-      <p>Сегодня Кисловодск — это сочетание мягкого климата, чистого воздуха, развитой санаторной базы и большого числа туристических маршрутов. Благодаря этому спрос на краткосрочную и долгосрочную аренду жилья стабильно высокий, особенно в летний сезон и праздничные периоды.</p>
-    </div>
+  <!-- История и особенности -->
+  <section class="card">
+    <h2>Краткая история и особенности Кисловодска</h2>
+    <p>Кисловодск — один из главных курортов Кавказских Минеральных Вод. Город сформировался вокруг Нарзанных источников: уже в XIX веке сюда приезжали лечиться и отдыхать, а Курортный парк стал центром притяжения для прогулок и терренкуров. Со временем сложилась характерная курортная архитектура, мягкий климат и спокойный ритм жизни, из-за чего спрос на аренду жилья остаётся высоким круглый год.</p>
+    <p>Сегодня Кисловодск — это чистый воздух, зелёные зоны, развитая санаторная инфраструктура и большое количество туристических маршрутов. Для арендаторов важны: близость к парку и центру, состояние дома и квартиры, транспортная доступность и наличие парковок (в высокий сезон с этим сложнее).</p>
   </section>
 
   <!-- Районы -->
   <section style="margin-top:18px">
+    <h2>Районы: где искать жильё</h2>
     <div class="grid cols-3">
       <div class="card">
-        <h2>Центр и у Курортного парка</h2>
-        <p>Самая востребованная локация: пешая доступность до Нарзанной галереи, терренкуров, кафе и музеев. <strong>Цены</strong> выше среднего, особенно летом; зато быстрый доступ к ключевым точкам и прогулочным маршрутам.</p>
+        <h3>Центр и Курортный парк</h3>
+        <p>Пешая доступность до Нарзанной галереи, терренкуров, кафе и музеев. <strong>Цены</strong> выше среднего, особенно летом; зато вы в эпицентре курортной жизни.</p>
       </div>
       <div class="card">
-        <h2>Слободка, Верхний рынок</h2>
-        <p>Смешанная застройка и удобная логистика, рядом магазины и сервисы. <strong>Стоимость</strong> заметно ниже центра, хороший баланс «цена/качество» для длительной аренды.</p>
+        <h3>Слободка, Верхний рынок</h3>
+        <p>Смешанная застройка, удобная логистика, рядом магазины и сервисы. <strong>Хороший баланс</strong> цены и комфорта для длительной аренды.</p>
       </div>
       <div class="card">
-        <h2>Спальные кварталы</h2>
-        <p>Тихие районы с более доступной ценой: современные дома и классические «спальные» массивы. Подходят тем, кто ценит спокойствие и бюджетность.</p>
+        <h3>Спальные кварталы</h3>
+        <p>Тихие массивы с более доступными ставками. Подходят тем, кто ценит спокойствие и бюджетность; до парка — на транспорте или пешком подольше.</p>
       </div>
     </div>
   </section>
@@ -139,35 +177,51 @@
   <section style="margin-top:18px">
     <div class="card">
       <h2>Ориентиры цен и сезонность</h2>
-      <p>Итоговая стоимость зависит от локации, состояния жилья и срока аренды:</p>
       <ul>
-        <li><strong>Долгосрочно:</strong> в спальных районах дешевле; у парка и в центре — дороже. В высокий сезон собственники иногда повышают ставки.</li>
-        <li><strong>Краткосрочно/посуточно:</strong> сильная зависимость от сезона и событий. Лето, бархатный сезон и праздники — пик спроса.</li>
-        <li><strong>Коммунальные платежи:</strong> чаще оплачиваются отдельно при длительной аренде — уточняйте условия у владельца.</li>
+        <li><strong>Долгосрочно:</strong> у парка и в центре дороже; спальные районы — дешевле. В высокий сезон возможны корректировки ставок.</li>
+        <li><strong>Краткосрочно/посуточно:</strong> сильная зависимость от месяца и событий. Лето, бархатный сезон и праздники — пик спроса, бронируйте заранее.</li>
+        <li><strong>Коммунальные платежи:</strong> при длительной аренде обычно оплачиваются отдельно — уточняйте у владельца.</li>
       </ul>
-      <p class="muted">Актуальные цены и фото — в EasyFlatBot. Мы публикуем объявления напрямую от собственников, без комиссий.</p>
+      <p class="note">Актуальные цены и фото смотрите в EasyFlatBot — у нас объявления напрямую от собственников, без комиссий и посредников.</p>
       <div style="margin-top:10px">
         <a class="cta" href="https://t.me/EasyFlatBot_bot" target="_blank" rel="noopener">Посмотреть свежие объявления</a>
       </div>
     </div>
   </section>
 
-  <!-- Практика -->
+  <!-- Практика и советы -->
   <section style="margin-top:18px">
     <div class="grid cols-2">
       <div class="card">
         <h2>Как добраться и перемещаться</h2>
-        <p>Ближайшие крупные транспортные узлы — Минеральные Воды (аэропорт и ж/д). Из аэропорта и вокзала ходят маршрутки и такси. По городу удобно передвигаться пешком (центр и парк), на автобусах и такси. Парковки в центре ограничены в высокий сезон.</p>
+        <p>Ближайший крупный узел — Минеральные Воды (аэропорт и ж/д). Из аэропорта и вокзала ходят маршрутки и такси. По городу удобно пешком (центр/парк), на автобусах и такси. В сезон с парковками сложнее — учитывайте это при выборе локации.</p>
       </div>
       <div class="card">
         <h2>Полезные советы</h2>
         <ul>
-          <li>Бронируйте заранее на лето и праздники — лучшие варианты разбирают быстро.</li>
-          <li>Всегда уточняйте условия заселения, залога и коммунальных платежей.</li>
-          <li>Смотрите фото и спрашивайте актуальные — у нас есть ручная модерация объявлений.</li>
+          <li>На лето и праздники бронируйте заранее — лучшие варианты разбирают быстро.</li>
+          <li>Уточняйте условия заселения, залога и коммунальных платежей до просмотра.</li>
+          <li>Просите актуальные фото и детали. В нашем боте объявления проходят ручную модерацию.</li>
         </ul>
       </div>
     </div>
+  </section>
+
+  <!-- FAQ без JS (details/summary) -->
+  <section style="margin-top:18px">
+    <h2>FAQ: часто задаваемые вопросы</h2>
+    <details open>
+      <summary>Как быстро найти квартиру в Кисловодске через EasyFlatBot?</summary>
+      <p>Запустите Telegram-бота, оформите подписку в Stars и получите доступ ко всем объявлениям. Общение — напрямую с владельцами, без посредников и комиссий.</p>
+    </details>
+    <details>
+      <summary>Когда выгоднее снимать жильё?</summary>
+      <p>Вне высокого сезона: поздняя осень, зима, ранняя весна. Летом и в праздники спрос максимальный, поэтому планируйте заранее.</p>
+    </details>
+    <details>
+      <summary>Какие районы выбрать?</summary>
+      <p>Если важны прогулки и инфраструктура — Центр/Парк. Если бюджет — присмотритесь к Слободке, Верхнему рынку и спальным кварталам.</p>
+    </details>
   </section>
 
   <!-- Соседние города -->
@@ -177,15 +231,15 @@
       <a href="https://easyflatbot.ru/essentuki/" target="_blank" rel="noopener">Ессентуки</a>
       <a href="https://easyflatbot.ru/pyatigorsk/" target="_blank" rel="noopener">Пятигорск</a>
       <a href="https://easyflatbot.ru/zheleznovodsk/" target="_blank" rel="noopener">Железноводск</a>
-      <a href="https://easyflatbot.ru/" target="_blank" rel="noopener">На главную</a>
+      <a href="https://easyflatbot.ru/" target="_blank" rel="noopener">На главную EasyFlatBot</a>
     </p>
   </section>
 </main>
 
 <footer>
   <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
-    <div class="muted">© EasyFlatBot. Аренда без посредников в Кисловодске.</div>
-    <div class="muted">
+    <div class="note">© EasyFlatBot. Аренда без посредников в Кисловодске.</div>
+    <div class="note">
       <a href="https://easyflatbot.ru/#contacts" target="_blank" rel="noopener">Контакты</a> ·
       <a href="https://easyflatbot.ru/#faq" target="_blank" rel="noopener">FAQ</a>
     </div>
