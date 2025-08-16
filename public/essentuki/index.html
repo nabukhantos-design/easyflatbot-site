@@ -4,97 +4,262 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Снять квартиру в Ессентуках без посредников — EasyFlatBot</title>
-  <meta name="description" content="Аренда квартир в Ессентуках без комиссий. Объявления от собственников, модерация, прямые контакты. Всё в Telegram — EasyFlatBot." />
+  <title>Ессентуки — районы, история, аренда без посредников | EasyFlatBot</title>
+  <meta name="description" content="Гид по Ессентукам: краткая история курорта, популярные районы, ориентиры цен и сезонность аренды. Без посредников — прямые контакты в Telegram EasyFlatBot." />
+
+  <!-- Канонический URL для основного сайта -->
   <link rel="canonical" href="https://easyflatbot.ru/essentuki/" />
 
-  <!-- Favicons -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="alternate icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="theme-color" content="#111827" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
 
   <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="article" />
   <meta property="og:site_name" content="EasyFlatBot" />
-  <meta property="og:title" content="Снять квартиру в Ессентуках — без посредников" />
-  <meta property="og:description" content="Свежие варианты, прямой контакт с хозяином, без комиссий. Всё в Telegram — EasyFlatBot." />
+  <meta property="og:title" content="Ессентуки — районы, история, аренда без посредников" />
+  <meta property="og:description" content="Районы Ессентуков, ориентиры цен, сезонность и быстрый доступ к объявлениям без посредников через Telegram EasyFlatBot." />
   <meta property="og:url" content="https://easyflatbot.ru/essentuki/" />
-  <meta property="og:image" content="/og-image.png?v=1" />
-  <meta property="og:locale" content="ru_RU" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <!-- og:image опущен намеренно, чтобы не было битых загрузок -->
 
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;margin:0;background:#f8fafc;color:#0f172a}
-    .wrap{max-width:960px;margin:0 auto;padding:32px 16px}
-    .hero{background:linear-gradient(135deg,#c026d3,#ef4444,#f59e0b);color:#fff;border-radius:20px;padding:32px;margin-top:24px}
-    .btn{display:inline-flex;gap:8px;align-items:center;background:#fff;color:#111827;padding:12px 16px;border-radius:14px;font-weight:600;text-decoration:none}
-    .chips a{display:inline-block;background:#111827;color:#fff;border-radius:999px;padding:8px 14px;margin:6px 8px 0 0;text-decoration:none;font-size:14px}
-    .muted{color:#334155}
-    footer{margin:32px 0;color:#475569;font-size:14px}
+    :root{
+      --bg1:#a21caf; /* fuchsia-700 */
+      --bg2:#e11d48; /* rose-600 */
+      --bg3:#f97316; /* orange-500 */
+      --ink:#111827; /* gray-900 */
+      --muted:#6b7280; /* gray-500 */
+      --ring:#e5e7eb; /* gray-200 */
+      --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{color:var(--ink);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,"Noto Sans",Arial;background:#fff}
+    a{color:var(--ink)}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+    .hero{color:#fff;background:linear-gradient(135deg,var(--bg1),var(--bg2) 45%,var(--bg3))}
+    .hero-inner{padding:28px 0 48px}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .logo{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:900}
+    .logo svg{width:28px;height:28px}
+    .nav-links{display:none;gap:16px}
+    .nav-links a{color:#fff;text-decoration:none;opacity:.9}
+    @media(min-width:900px){.nav-links{display:flex}}
+
+    h1{font-size:40px;line-height:1.15;margin:12px 0 10px;font-weight:900}
+    h2{font-size:26px;line-height:1.25;margin:28px 0 12px;font-weight:800}
+    h3{font-size:18px;margin:0 0 8px;font-weight:700}
+    p{margin:0 0 12px}
+    ul{margin:0 0 12px 18px}
+
+    .kicker{display:inline-flex;gap:14px;align-items:center;margin:8px 0 14px;flex-wrap:wrap}
+    /* просто текст, без фона/бордера */
+    .chip{
+      display:inline-flex;align-items:center;gap:6px;
+      color:#ffffff; font-weight:600; opacity:.95;
+      background:none; border:none; border-radius:0; padding:0;
+    }
+
+    .cta{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--ink);padding:12px 18px;border-radius:14px;text-decoration:none;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+    .cta.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.6);backdrop-filter:saturate(160%) blur(6px)}
+    .muted{color:#f3f4f6}
+    .grid{display:grid;gap:18px}
+    @media(min-width:900px){.grid.cols-3{grid-template-columns:repeat(3,1fr)} .grid.cols-2{grid-template-columns:repeat(2,1fr)}}
+    .card{background:var(--card);border:1px solid var(--ring);border-radius:20px;padding:18px;box-shadow:0 6px 18px rgba(17,24,39,.04)}
+    .note{color:var(--muted);font-size:14px}
+    .cities a{display:inline-block;margin:6px 10px 0 0;text-decoration:underline}
+    footer{padding:30px 0;color:var(--muted)}
+    details{border:1px solid var(--ring);border-radius:12px;padding:12px;background:#fff}
+    details+details{margin-top:10px}
+    summary{cursor:pointer;font-weight:700}
   </style>
 
-  <!-- JSON-LD: Service -->
+  <!-- JSON-LD: WebPage + Place -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"Service",
-    "name":"Аренда квартир в Ессентуках — EasyFlatBot",
-    "areaServed":{"@type":"City","name":"Ессентуки","address":{"@type":"PostalAddress","addressCountry":"RU"}},
-    "provider":{"@type":"Organization","name":"EasyFlatBot","url":"https://easyflatbot.ru/"},
-    "url":"https://easyflatbot.ru/essentuki/"
+    "@type":"WebPage",
+    "name":"Ессентуки — районы, история, аренда без посредников",
+    "url":"https://easyflatbot.ru/essentuki/",
+    "about":{
+      "@type":"Place",
+      "name":"Ессентуки",
+      "address":{"@type":"PostalAddress","addressLocality":"Ессентуки","addressRegion":"Ставропольский край","addressCountry":"RU"}
+    },
+    "publisher":{"@type":"Organization","name":"EasyFlatBot","url":"https://easyflatbot.ru/"}
   }
   </script>
-
   <!-- JSON-LD: FAQ -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"FAQPage",
     "mainEntity":[
-      {"@type":"Question","name":"Как снять квартиру в Ессентуках без посредников?","acceptedAnswer":{"@type":"Answer","text":"Откройте Telegram-бота EasyFlatBot, оформите подписку звёздами и получите доступ к объявлениям с контактами владельцев."}},
-      {"@type":"Question","name":"Какие районы популярны?","acceptedAnswer":{"@type":"Answer","text":"Курортная зона и центр рядом с парком и санаториями. В объявлении указывается район, фото и условия заселения."}},
-      {"@type":"Question","name":"Есть ли комиссия у сервиса?","acceptedAnswer":{"@type":"Answer","text":"Нет. Вы общаетесь с собственником напрямую, без посредников и комиссий."}}
+      {"@type":"Question","name":"Как быстро найти квартиру в Ессентуках без посредников?","acceptedAnswer":{"@type":"Answer","text":"Запустите Telegram-бота EasyFlatBot, оформите подписку в Telegram Stars и получите доступ ко всем объявлениям с контактами владельцев."}},
+      {"@type":"Question","name":"Когда дешевле снимать жильё в Ессентуках?","acceptedAnswer":{"@type":"Answer","text":"Вне высокого сезона — поздняя осень, зима, ранняя весна. Летом и в праздничные периоды спрос выше, цены растут; бронируйте заранее."}},
+      {"@type":"Question","name":"Какие районы популярны в Ессентуках?","acceptedAnswer":{"@type":"Answer","text":"Центр и курортная зона вокруг источников — самые востребованные; спальные кварталы дают больше бюджета при достаточной инфраструктуре."}}
     ]
   }
   </script>
 
-  <!-- Yandex.Metrika -->
+  <!-- JSON-LD: хлебные крошки -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Главная","item":"https://easyflatbot.ru/"},
+    {"@type":"ListItem","position":2,"name":"Ессентуки","item":"https://easyflatbot.ru/essentuki/"}
+  ]}
+  </script>
+
+  <!-- Яндекс.Метрика (тот же счётчик) -->
   <script>
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();for (var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
-    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-    (window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=103756826","ym");
-    ym(103756826,"init",{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",accurateTrackBounce:true,trackLinks:true});
+      m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=103756826','ym');
+    ym(103756826,'init',{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
   </script>
 </head>
 <body>
-  <noscript><div><img src="https://mc.yandex.ru/watch/103756826" style="position:absolute; left:-9999px;" alt=""/></div></noscript>
+<noscript><img src="https://mc.yandex.ru/watch/103756826" style="position:absolute;left:-9999px" alt=""></noscript>
 
-  <div class="wrap">
-    <a href="/" class="muted">← На главную</a>
-
-    <section class="hero">
-      <h1 style="margin:0 0 12px 0;font-size:32px;line-height:1.2;font-weight:900">
-        Снять квартиру в Ессентуках — без посредников
-      </h1>
-      <p style="margin:0 0 18px 0;font-size:18px">
-        Актуальные варианты рядом с парком и санаториями. Прямой контакт с хозяином, без комиссий.
-      </p>
-      <a class="btn" href="https://t.me/EasyFlatBot_bot?start=city_essentuki" target="_blank" rel="noopener noreferrer">
-        Запустить бота в Telegram
+<!-- HERO / ШАПКА -->
+<section class="hero">
+  <div class="container hero-inner">
+    <nav class="nav">
+      <a class="logo" href="https://easyflatbot.ru/" target="_blank" rel="noopener" aria-label="EasyFlatBot">
+        <!-- встроенный белый логотип (SVG) -->
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="32" cy="32" r="26" stroke="#ffffff"/>
+          <path d="M20 36l8-16 8 8 8-4" stroke="#ffffff"/>
+        </svg>
+        <span>EasyFlatBot</span>
       </a>
-    </section>
+      <div class="nav-links">
+        <a href="https://easyflatbot.ru/#what" target="_blank" rel="noopener">Что это</a>
+        <a href="https://easyflatbot.ru/#how" target="_blank" rel="noopener">Как работает</a>
+        <a href="https://easyflatbot.ru/#benefits" target="_blank" rel="noopener">Преимущества</a>
+        <a href="https://easyflatbot.ru/#pricing" target="_blank" rel="noopener">Тарифы</a>
+        <a href="https://easyflatbot.ru/#faq" target="_blank" rel="noopener">FAQ</a>
+        <a href="https://easyflatbot.ru/#contacts" target="_blank" rel="noopener">Контакты</a>
+      </div>
+    </nav>
 
-    <p style="margin:18px 0 8px 0">Смотрите также:</p>
-    <p class="chips">
-      <a href="/kislovodsk/">Кисловодск</a>
-      <a href="/pyatigorsk/">Пятигорск</a>
-      <a href="/zheleznovodsk/">Железноводск</a>
-    </p>
+    <div class="kicker">
+      <span class="chip">Без посредников</span>
+      <span class="chip">Прямой контакт с владельцем</span>
+      <span class="chip">Telegram Stars</span>
+    </div>
 
-    <footer>© EasyFlatBot</footer>
+    <h1>Ессентуки — снять квартиру без комиссий и переплат</h1>
+    <p class="muted">История курорта, районы, ориентиры цен и сезонность. Все объявления доступны в нашем Telegram-боте EasyFlatBot.</p>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:14px">
+      <a class="cta" href="https://t.me/EasyFlatBot_bot" target="_blank" rel="noopener">Открыть объявления в Telegram</a>
+      <a class="cta ghost" href="https://t.me/EasyFlatBot_chat" target="_blank" rel="noopener">Задать вопрос в чате</a>
+    </div>
   </div>
+</section>
+
+<!-- CONTENT -->
+<main class="container" style="padding:32px 0 10px">
+
+  <!-- История и особенности -->
+  <section class="card">
+    <h2>Краткая история и особенности Ессентуков</h2>
+    <p>Ессентуки — курорт федерального значения, знаменитый своими минеральными водами «Ессентуки №4» и «Ессентуки №17». С XIX века здесь развивается санаторно-курортное лечение, бальнеология и грязетерапия. Курортная инфраструктура сформировалась вокруг источников, парковых зон и санаториев, что определяет спокойный ритм города и устойчивый спрос на аренду жилья круглый год.</p>
+    <p>Для арендаторов важны близость к курортной зоне, состояние жилья и транспортная доступность. В высокий сезон и в периоды заездов в санатории спрос растёт, поэтому выгоднее бронировать заранее.</p>
+  </section>
+
+  <!-- Районы -->
+  <section style="margin-top:18px">
+    <h2>Районы: где искать жильё</h2>
+    <div class="grid cols-3">
+      <div class="card">
+        <h3>Центр и курортная зона</h3>
+        <p>Пешая доступность источников, парка, лечебных корпусов, кафе и прогулочных зон. <strong>Цены</strong> выше средних, но максимальная удобность для отдыха и лечения.</p>
+      </div>
+      <div class="card">
+        <h3>Близкие к центру кварталы</h3>
+        <p>Смешанная застройка, развитая инфраструктура, хорошая логистика. <strong>Баланс</strong> цены и комфорта при длительной аренде.</p>
+      </div>
+      <div class="card">
+        <h3>Спальные массивы</h3>
+        <p>Тише, доступнее по цене, достаточное число магазинов и сервисов. До курортной зоны — на транспорте или пешком дольше.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Цены и сезонность -->
+  <section style="margin-top:18px">
+    <div class="card">
+      <h2>Ориентиры цен и сезонность</h2>
+      <ul>
+        <li><strong>Долгосрочно:</strong> ближе к курортной зоне дороже; в спальных районах — заметно дешевле. В пиковые периоды возможны корректировки ставок.</li>
+        <li><strong>Краткосрочно/посуточно:</strong> зависят от сезона и загрузки санаториев. Праздники и лето — время максимального спроса.</li>
+        <li><strong>Коммунальные платежи:</strong> при длительной аренде чаще оплачиваются отдельно — уточняйте условия у собственника.</li>
+      </ul>
+      <p class="note">Актуальные цены и фото смотрите в EasyFlatBot — объявления напрямую от владельцев, без комиссий и посредников.</p>
+      <div style="margin-top:10px">
+        <a class="cta" href="https://t.me/EasyFlatBot_bot" target="_blank" rel="noopener">Посмотреть свежие объявления</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Практика и советы -->
+  <section style="margin-top:18px">
+    <div class="grid cols-2">
+      <div class="card">
+        <h2>Как добраться и перемещаться</h2>
+        <p>Ближайший крупный транспортный узел — Минеральные Воды (аэропорт и ж/д). До Ессентуков ходят поезда, электрички и автобусы. По городу удобно на такси и общественном транспорте; парковки вблизи курортной зоны ограничены.</p>
+      </div>
+      <div class="card">
+        <h2>Полезные советы</h2>
+        <ul>
+          <li>Планируйте поездку в пик сезона заранее — хорошие варианты аренды быстро разбирают.</li>
+          <li>Обсуждайте условия заселения, залога, коммунальных платежей до бронирования.</li>
+          <li>Просите актуальные фото и подробности. В нашем боте объявления проходят ручную модерацию.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="margin-top:18px">
+    <h2>FAQ: часто задаваемые вопросы</h2>
+    <details open>
+      <summary>Как быстро найти квартиру в Ессентуках через EasyFlatBot?</summary>
+      <p>Запустите Telegram-бота, оформите подписку в Stars и получите доступ ко всем объявлениям. Общение — напрямую с владельцами, без посредников и комиссий.</p>
+    </details>
+    <details>
+      <summary>Когда выгоднее снимать жильё?</summary>
+      <p>Поздняя осень, зима и ранняя весна обычно дешевле. Летом и в праздники спрос выше — бронируйте заранее.</p>
+    </details>
+    <details>
+      <summary>Какие районы выбрать?</summary>
+      <p>Если важны прогулки и лечение — центр и курортная зона. Если бюджет и тишина — присмотритесь к спальным кварталам и близким к центру районам.</p>
+    </details>
+  </section>
+
+  <!-- Соседние города -->
+  <section style="margin:24px 0">
+    <h2>Соседние курорты КМВ</h2>
+    <p class="cities">
+      <a href="https://easyflatbot.ru/kislovodsk/" target="_blank" rel="noopener">Кисловодск</a>
+      <a href="https://easyflatbot.ru/pyatigorsk/" target="_blank" rel="noopener">Пятигорск</a>
+      <a href="https://easyflatbot.ru/zheleznovodsk/" target="_blank" rel="noopener">Железноводск</a>
+      <a href="https://easyflatbot.ru/" target="_blank" rel="noopener">На главную EasyFlatBot</a>
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div class="note">© EasyFlatBot. Аренда без посредников в Ессентуках.</div>
+    <div class="note">
+      <a href="https://easyflatbot.ru/#contacts" target="_blank" rel="noopener">Контакты</a> ·
+      <a href="https://easyflatbot.ru/#faq" target="_blank" rel="noopener">FAQ</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
-
