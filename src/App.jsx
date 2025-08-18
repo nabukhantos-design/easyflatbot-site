@@ -364,62 +364,6 @@ const FAQ = ({ item, defaultOpen = false }) => {
   );
 };
 
-/** ДОБАВЛЕНО: Выпадающий список городов в хедере */
-function CityDropdown() {
-  const [open, setOpen] = useState(false);
-  const items = cities;
-
-  return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      <button
-        type="button"
-        className="text-white/90 hover:text-white transition-colors inline-flex items-center gap-1"
-        onClick={() => setOpen((v) => !v)}
-        aria-haspopup="menu"
-        aria-expanded={open}
-      >
-        Города
-        <span aria-hidden>▾</span>
-      </button>
-
-      {open && (
-        <div
-          className="absolute left-0 top-full mt-2 w-56 rounded-xl bg-white shadow-lg ring-1 ring-black/5 py-2 z-50"
-          role="menu"
-        >
-          {items.map((c) =>
-            c.href ? (
-              <a
-                key={c.name}
-                href={c.href}
-                role="menuitem"
-                className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-50"
-                onClick={() => c.goal && window.ym?.(YM_ID, "reachGoal", c.goal)}
-              >
-                {c.name}
-              </a>
-            ) : (
-              <span
-                key={c.name}
-                role="menuitem"
-                aria-disabled="true"
-                className="block px-4 py-2 text-sm text-gray-400 cursor-not-allowed"
-              >
-                {c.name}
-              </span>
-            )
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
-/** /ДОБАВЛЕНО */
-
 export default function EasyFlatBotSite() {
   useEffect(() => {
     if (typeof window !== "undefined" && !window.__EFB_TESTED__) {
@@ -443,9 +387,6 @@ export default function EasyFlatBotSite() {
                 <NavLink href="#how">Как это работает</NavLink>
                 <NavLink href="#benefits">Почему мы</NavLink>
                 <NavLink href="#cities">Города</NavLink>
-                {/* ДОБАВЛЕНО: dropdown со списком городов */}
-                <CityDropdown />
-                {/* /ДОБАВЛЕНО */}
                 <NavLink href="#pricing">Тарифы</NavLink>
                 <NavLink href="#faq">FAQ</NavLink>
                 <NavLink href="#contacts">Контакты</NavLink>
