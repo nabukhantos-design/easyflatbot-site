@@ -21,14 +21,6 @@ import * as Lucide from "lucide-react";
 const YM_ID = 103756826;
 // ================================
 
-// Городские страницы (для меню/футера)
-const CITY_PAGES = [
-  { name: "Кисловодск", slug: "kislovodsk", anchor: "Квартиры в Кисловодске" },
-  { name: "Ессентуки", slug: "essentuki", anchor: "Аренда в Ессентуках" },
-  { name: "Пятигорск", slug: "pyatigorsk", anchor: "Квартиры в Пятигорске" },
-  { name: "Железноводск", slug: "zheleznovodsk", anchor: "Аренда в Железноводске" },
-];
-
 // Upload icon (custom SVG)
 const Upload = (props) => (
   <svg
@@ -49,40 +41,44 @@ const Upload = (props) => (
 );
 
 // Safe fallbacks for possibly missing icons in lucide-react
-const SendIcon = Lucide?.Send || ((props) => (
-  <svg
-    {...props}
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={(props && props.className) || "w-5 h-5"}
-  >
-    <path d="M22 2L11 13" />
-    <path d="M22 2l-7 20-4-9-9-4 20-7z" />
-  </svg>
-));
+const SendIcon =
+  Lucide?.Send ||
+  ((props) => (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={(props && props.className) || "w-5 h-5"}
+    >
+      <path d="M22 2L11 13" />
+      <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+    </svg>
+  ));
 
-const PhoneCallIcon = Lucide?.PhoneCall || ((props) => (
-  <svg
-    {...props}
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={(props && props.className) || "w-5 h-5"}
-  >
-    <path d="M15.05 5A5 5 0 0 1 19 8.95" />
-    <path d="M15.05 1A9 9 0 0 1 23 8.95" />
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.86 19.86 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2H7a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.16a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-  </svg>
-));
+const PhoneCallIcon =
+  Lucide?.PhoneCall ||
+  ((props) => (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={(props && props.className) || "w-5 h-5"}
+    >
+      <path d="M15.05 5A5 5 0 0 1 19 8.95" />
+      <path d="M15.05 1A9 9 0 0 1 23 8.95" />
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.86 19.86 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2H7a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.16a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  ));
 
 function runSelfTests() {
   try {
@@ -97,7 +93,9 @@ function runSelfTests() {
     ];
     checks.forEach(([name, Comp]) => {
       if (typeof Comp !== "function") {
-        console.warn(`[SelfTest] Icon component missing: ${name}. Using fallback if available.`);
+        console.warn(
+          `[SelfTest] Icon component missing: ${name}. Using fallback if available.`
+        );
       }
     });
   } catch (e) {
@@ -105,7 +103,23 @@ function runSelfTests() {
   }
 }
 
-const cities = ["Кисловодск", "Ессентуки", "Пятигорск", "Железноводск", "Ставрополь"];
+/**
+ * Города для внутренней перелинковки.
+ * href — только для тех, где у нас есть отдельная страница.
+ * goal — идентификатор цели в Метрике.
+ */
+const cities = [
+  { name: "Кисловодск", href: "/kislovodsk/", goal: "city_click_kislovodsk" },
+  { name: "Ессентуки", href: "/essentuki/", goal: "city_click_essentuki" },
+  { name: "Пятигорск", href: "/pyatigorsk/", goal: "city_click_pyatigorsk" },
+  {
+    name: "Железноводск",
+    href: "/zheleznovodsk/",
+    goal: "city_click_zheleznovodsk",
+  },
+  // Ставрополь оставляем без ссылки, если страницы пока нет
+  { name: "Ставрополь" },
+];
 
 const faqs = [
   {
@@ -191,11 +205,15 @@ const benefits = [
 ];
 
 const Section = ({ id, children, className = "" }) => (
-  <section id={id} className={`scroll-mt-24 ${className}`}>{children}</section>
+  <section id={id} className={`scroll-mt-24 ${className}`}>
+    {children}
+  </section>
 );
 
 const Container = ({ children, className = "" }) => (
-  <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
+  <div className={`mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`}>
+    {children}
+  </div>
 );
 
 const LogoMark = ({ className = "w-8 h-8" }) => (
@@ -216,7 +234,9 @@ const Logo = ({ invert = false }) => (
   <div className="flex items-center gap-2">
     <LogoMark className={`w-7 h-7 ${invert ? "text-white" : "text-black"}`} />
     <span
-      className={`font-black tracking-tight text-lg sm:text-xl ${invert ? "text-white" : "text-black"}`}
+      className={`font-black tracking-tight text-lg sm:text-xl ${
+        invert ? "text-white" : "text-black"
+      }`}
     >
       EasyFlatBot
     </span>
@@ -248,16 +268,30 @@ const PrimaryButton = ({ href, children, icon: Icon, external = false, goal }) =
 };
 
 // === goals support + external ===
-const GhostButton = ({ href, children, icon: Icon, variant = "dark", external = false, goal }) => {
+const GhostButton = ({
+  href,
+  children,
+  icon: Icon,
+  variant = "dark",
+  external = false,
+  goal,
+}) => {
   const isLight = variant === "light";
-  const base = "inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-semibold transition-all";
+  const base =
+    "inline-flex items-center gap-2 rounded-2xl px-5 py-3 font-semibold transition-all";
   const cls = isLight
     ? "ring-1 ring-gray-300 text-gray-900 hover:bg-gray-50"
     : "ring-1 ring-white/60 text-white backdrop-blur-sm hover:bg-white/10";
   const extra = external ? { target: "_blank", rel: "noopener noreferrer" } : {};
   const onClick = () => goal && window.ym?.(YM_ID, "reachGoal", goal);
   return (
-    <a href={href} {...extra} data-ym-goal={goal} onClick={onClick} className={`${base} ${cls}`}>
+    <a
+      href={href}
+      {...extra}
+      data-ym-goal={goal}
+      onClick={onClick}
+      className={`${base} ${cls}`}
+    >
       {typeof Icon === "function" && <Icon className="w-5 h-5" />}
       {children}
     </a>
@@ -270,7 +304,9 @@ const Chip = ({ children }) => (
   </span>
 );
 
-const Card = ({ children }) => <div className="rounded-3xl bg-white shadow-lg p-6 md:p-8">{children}</div>;
+const Card = ({ children }) => (
+  <div className="rounded-3xl bg-white shadow-lg p-6 md:p-8">{children}</div>
+);
 
 const GradientBG = ({ children }) => (
   <div className="relative overflow-hidden">
@@ -312,9 +348,16 @@ const FAQ = ({ item, defaultOpen = false }) => {
   const [open, setOpen] = useState(defaultOpen);
   return (
     <div className="rounded-2xl ring-1 ring-gray-200 bg-white">
-      <button className="w-full flex items-center justify-between p-5 text-left" onClick={() => setOpen((v) => !v)}>
+      <button
+        className="w-full flex items-center justify-between p-5 text-left"
+        onClick={() => setOpen((v) => !v)}
+      >
         <span className="font-semibold pr-6">{item.q}</span>
-        <ArrowRight className={`w-5 h-5 transition-transform ${open ? "rotate-90" : ""}`} />
+        <ArrowRight
+          className={`w-5 h-5 transition-transform ${
+            open ? "rotate-90" : ""
+          }`}
+        />
       </button>
       {open && <div className="p-5 pt-0 text-gray-700">{item.a}</div>}
     </div>
@@ -343,30 +386,7 @@ export default function EasyFlatBotSite() {
                 <NavLink href="#what">Что это</NavLink>
                 <NavLink href="#how">Как это работает</NavLink>
                 <NavLink href="#benefits">Почему мы</NavLink>
-
-                {/* Выпадающее меню Города (сквозные ссылки на городские страницы) */}
-                <div className="relative group">
-                  <a
-                    href="/kislovodsk/"
-                    className="text-white/90 hover:text-white transition-colors"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Города
-                  </a>
-                  <div className="absolute left-0 mt-2 hidden group-hover:block bg-white text-gray-900 rounded-xl shadow-lg ring-1 ring-black/10 min-w-[220px]">
-                    {CITY_PAGES.map((c) => (
-                      <a
-                        key={c.slug}
-                        href={`/${c.slug}/`}
-                        className="block px-4 py-2 text-sm hover:bg-gray-50"
-                      >
-                        {c.anchor}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-
+                <NavLink href="#cities">Города</NavLink>
                 <NavLink href="#pricing">Тарифы</NavLink>
                 <NavLink href="#faq">FAQ</NavLink>
                 <NavLink href="#contacts">Контакты</NavLink>
@@ -436,7 +456,8 @@ export default function EasyFlatBotSite() {
                   </GhostButton>
                 </div>
                 <div className="mt-6 text-white/80 text-sm">
-                  Старт Telegram-бота — <span className="font-semibold">1 сентября 2025</span>
+                  Старт Telegram-бота —{" "}
+                  <span className="font-semibold">1 сентября 2025</span>
                 </div>
               </motion.div>
             </div>
@@ -454,13 +475,17 @@ export default function EasyFlatBotSite() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl md:text-4xl font-black tracking-tight">Что такое EasyFlatBot?</h2>
+              <h2 className="text-3xl md:text-4xl font-black tracking-tight">
+                Что такое EasyFlatBot?
+              </h2>
               <p className="mt-4 text-gray-700 text-lg">
-                EasyFlatBot — Telegram-бот для поиска и сдачи жилья на короткий срок в городах-курортах
-                Ставропольского края. Никаких комиссий, посредников и скрытых платежей.
+                EasyFlatBot — Telegram-бот для поиска и сдачи жилья на короткий срок в
+                городах-курортах Ставропольского края. Никаких комиссий, посредников и
+                скрытых платежей.
               </p>
               <p className="mt-3 text-gray-700">
-                Всё просто: подписка для арендаторов и бесплатное размещение для владельцев квартир.
+                Всё просто: подписка для арендаторов и бесплатное размещение для
+                владельцев квартир.
               </p>
               <div className="mt-6 flex gap-3">
                 <PrimaryButton href="#how" icon={ArrowRight}>
@@ -482,17 +507,23 @@ export default function EasyFlatBotSite() {
                       Подписка за копейки — прямой контакт с хозяином.
                     </div>
                   </div>
-                  <div className="rounded-2xl bg-gradient-to-br from-teal-100 to-sky-100 p-6">
+                  <div className="rounded-2xl bg-gradient-to-br from-teал-100 to-sky-100 p-6">
                     <div className="font-semibold">Собственникам</div>
-                    <div className="text-sm text-gray-700 mt-2">Бесплатное размещение объявлений.</div>
+                    <div className="text-sm text-gray-700 mt-2">
+                      Бесплатное размещение объявлений.
+                    </div>
                   </div>
                   <div className="rounded-2xl bg-gradient-to-br from-indigo-100 to-sky-100 p-6">
                     <div className="font-semibold">Без посредников</div>
-                    <div className="text-sm text-gray-700 mt-2">Только честная аренда, напрямую.</div>
+                    <div className="text-sm text-gray-700 mt-2">
+                      Только честная аренда, напрямую.
+                    </div>
                   </div>
                   <div className="rounded-2xl bg-gradient-to-br from-orange-100 to-rose-100 p-6">
                     <div className="font-semibold">Всё в Telegram</div>
-                    <div className="text-sm text-gray-700 mt-2">Никаких логинов и сложностей.</div>
+                    <div className="text-sm text-gray-700 mt-2">
+                      Никаких логинов и сложностей.
+                    </div>
                   </div>
                 </div>
               </div>
@@ -508,10 +539,26 @@ export default function EasyFlatBotSite() {
             Как найти квартиру в EasyFlatBot?
           </h2>
           <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Step icon={BadgeCheck} title="Оформи подписку" text="Очень просто — за 1 минуту прямо в боте." />
-            <Step icon={Home} title="Выбери квартиру" text="Смотри и фильтруй объявления по городам." />
-            <Step icon={Filter} title="Получай доступ" text="Полный доступ ко всем объявлениям без ограничений." />
-            <Step icon={KeyRound} title="Заселяйся" text="Без посредников и переплат — связывайся напрямую." />
+            <Step
+              icon={BadgeCheck}
+              title="Оформи подписку"
+              text="Очень просто — за 1 минуту прямо в боте."
+            />
+            <Step
+              icon={Home}
+              title="Выбери квартиру"
+              text="Смотри и фильтруй объявления по городам."
+            />
+            <Step
+              icon={Filter}
+              title="Получай доступ"
+              text="Полный доступ ко всем объявлениям без ограничений."
+            />
+            <Step
+              icon={KeyRound}
+              title="Заселяйся"
+              text="Без посредников и переплат — связывайся напрямую."
+            />
           </div>
         </div>
       </Section>
@@ -519,7 +566,9 @@ export default function EasyFlatBotSite() {
       {/* Benefits */}
       <Section id="benefits" className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-black tracking-tight">Почему EasyFlatBot</h2>
+          <h2 className="text-3xl md:text-4xl font-black tracking-tight">
+            Почему EasyFlatBot
+          </h2>
           <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((b, i) => (
               <motion.div
@@ -540,34 +589,77 @@ export default function EasyFlatBotSite() {
       <Section id="cities" className="py-16 md:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between flex-wrap gap-4">
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight">Города</h2>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight">
+              Города
+            </h2>
             <div className="flex flex-wrap gap-2">
-              {cities.map((c) => (
-                <span key={c} className="rounded-full bg-gray-900 text-white px-4 py-2 text-sm">
-                  {c}
-                </span>
-              ))}
+              {cities.map((c) =>
+                c.href ? (
+                  <a
+                    key={c.name}
+                    href={c.href}
+                    className="rounded-full bg-gray-900 text-white px-4 py-2 text-sm"
+                    onClick={() =>
+                      c.goal && window.ym?.(YM_ID, "reachGoal", c.goal)
+                    }
+                    aria-label={`Снять квартиру — ${c.name}`}
+                  >
+                    {c.name}
+                  </a>
+                ) : (
+                  <span
+                    key={c.name}
+                    className="rounded-full bg-gray-300 text-gray-800 px-4 py-2 text-sm"
+                    aria-label={c.name}
+                  >
+                    {c.name}
+                  </span>
+                )
+              )}
             </div>
           </div>
+
           <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {cities.map((c, i) => (
-              <motion.div
-                key={c}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.04 }}
-                className="rounded-3xl bg-gradient-to-br from-gray-100 to-white p-6 ring-1 ring-gray-200 shadow-sm"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="rounded-xl bg-gray-900 text-white p-2">
-                    <MapPin className="w-5 h-5" />
+            {cities.map((c, i) => {
+              const Tile = (
+                <div className="rounded-3xl bg-gradient-to-br from-gray-100 to-white p-6 ring-1 ring-gray-200 shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="rounded-xl bg-gray-900 text-white p-2">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div className="font-semibold">{c.name}</div>
                   </div>
-                  <div className="font-semibold">{c}</div>
+                  <p className="text-gray-700 mt-3 text-sm">
+                    Подборка актуальных квартир — прямо в боте.
+                  </p>
                 </div>
-                <p className="text-gray-700 mt-3 text-sm">Подборка актуальных квартир — прямо в боте.</p>
-              </motion.div>
-            ))}
+              );
+
+              return (
+                <motion.div
+                  key={c.name}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.04 }}
+                >
+                  {c.href ? (
+                    <a
+                      href={c.href}
+                      onClick={() =>
+                        c.goal && window.ym?.(YM_ID, "reachGoal", c.goal)
+                      }
+                      aria-label={`Страница города: ${c.name}`}
+                      className="block focus:outline-none focus:ring-2 focus:ring-fuchsia-400 rounded-3xl"
+                    >
+                      {Tile}
+                    </a>
+                  ) : (
+                    Tile
+                  )}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </Section>
@@ -577,8 +669,12 @@ export default function EasyFlatBotSite() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between flex-wrap gap-4">
             <div>
-              <h2 className="text-3xl md:text-4xl font-black tracking-tight">Тарифы подписки</h2>
-              <p className="mt-2 text-gray-700">Первые 3 месяца после запуска — 100 ⭐ за весь период.</p>
+              <h2 className="text-3xl md:text-4xl font-black tracking-tight">
+                Тарифы подписки
+              </h2>
+              <p className="mt-2 text-gray-700">
+                Первые 3 месяца после запуска — 100 ⭐ за весь период.
+              </p>
             </div>
             <a
               href="https://t.me/EasyFlatBot_bot"
@@ -661,9 +757,12 @@ export default function EasyFlatBotSite() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-black tracking-tight">Собственникам — бесплатно</h2>
+              <h2 className="text-3xl md:text-4xl font-black tracking-tight">
+                Собственникам — бесплатно
+              </h2>
               <p className="mt-3 text-gray-700">
-                Размести объявление бесплатно — быстро и просто. Без платных пакетов и ограничений.
+                Размести объявление бесплатно — быстро и просто. Без платных пакетов и
+                ограничений.
               </p>
               <div className="mt-6 flex gap-3">
                 <PrimaryButton
@@ -687,11 +786,16 @@ export default function EasyFlatBotSite() {
             <div>
               <div className="rounded-3xl bg-white p-6 ring-1 ring-gray-200 shadow-sm">
                 <div className="grid grid-cols-2 gap-4">
-                  {["Бесплатно", "Ручная модерация", "Фото и описание", "Прямой контакт"].map((t) => (
-                    <div key={t} className="rounded-2xl bg-gray-50 p-4 ring-1 ring-gray-200 text-sm font-medium">
-                      {t}
-                    </div>
-                  ))}
+                  {["Бесплатно", "Ручная модерация", "Фото и описание", "Прямой контакт"].map(
+                    (t) => (
+                      <div
+                        key={t}
+                        className="rounded-2xl bg-gray-50 p-4 ring-1 ring-gray-200 text-sm font-medium"
+                      >
+                        {t}
+                      </div>
+                    )
+                  )}
                 </div>
               </div>
             </div>
@@ -733,7 +837,9 @@ export default function EasyFlatBotSite() {
       {/* FAQ */}
       <Section id="faq" className="py-16 md:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-black tracking-tight">FAQ: вопросы и ответы</h2>
+          <h2 className="text-3xl md:text-4xl font-black tracking-tight">
+            FAQ: вопросы и ответы
+          </h2>
           <div className="mt-8 grid md:grid-cols-2 gap-4">
             {faqs.map((f, i) => (
               <FAQ key={i} item={f} />
@@ -748,7 +854,9 @@ export default function EasyFlatBotSite() {
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h2 className="text-3xl md:text-4xl font-black tracking-tight">Контакты</h2>
-              <p className="mt-3 text-gray-700">Техническая поддержка — через наш чат в Telegram.</p>
+              <p className="mt-3 text-gray-700">
+                Техническая поддержка — через наш чат в Telegram.
+              </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <PrimaryButton
                   href="https://t.me/EasyFlatBot_bot"
@@ -784,31 +892,52 @@ export default function EasyFlatBotSite() {
 
       {/* Footer */}
       <footer className="pb-12 pt-6">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <Logo />
             <div className="text-sm text-gray-600">
               © {new Date().getFullYear()} EasyFlatBot. Все права защищены.
             </div>
             <div className="flex items-center gap-3 text-sm">
-              <a href="#what" className="underline underline-offset-4">О нас</a>
-              <a href="#roadmap" className="underline underline-offset-4">Будущее</a>
-              <a href="#faq" className="underline underline-offset-4">FAQ</a>
-              <a href="#contacts" className="underline underline-offset-4">Контакты</a>
+              <a href="#what" className="underline underline-offset-4">
+                О нас
+              </a>
+              <a href="#roadmap" className="underline underline-offset-4">
+                Будущее
+              </a>
+              <a href="#faq" className="underline underline-offset-4">
+                FAQ
+              </a>
+              <a href="#contacts" className="underline underline-offset-4">
+                Контакты
+              </a>
             </div>
           </div>
 
-          {/* Ссылки на городские страницы (сквозные внутренние ссылки) */}
-          <div className="pt-2 border-t border-gray-200">
-            <div className="text-xs uppercase tracking-wide text-gray-500 mb-2">Города</div>
+          {/* ДОБАВЛЕНО: ссылки на городские страницы */}
+          <div className="mt-6 pt-4 border-t border-gray-200">
+            <div className="text-xs uppercase tracking-wide text-gray-500 mb-2">
+              Города
+            </div>
             <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
-              {CITY_PAGES.map((c) => (
-                <a key={c.slug} href={`/${c.slug}/`} className="text-gray-700 hover:text-gray-900 underline underline-offset-4">
-                  {c.anchor}
-                </a>
-              ))}
+              {cities
+                .filter((c) => !!c.href)
+                .map((c) => (
+                  <a
+                    key={c.name}
+                    href={c.href}
+                    onClick={() =>
+                      c.goal && window.ym?.(YM_ID, "reachGoal", c.goal)
+                    }
+                    className="text-gray-700 hover:text-gray-900 underline underline-offset-4"
+                    aria-label={`Страница города: ${c.name}`}
+                  >
+                    {c.name}
+                  </a>
+                ))}
             </div>
           </div>
+          {/* /ДОБАВЛЕНО */}
         </div>
       </footer>
     </main>
